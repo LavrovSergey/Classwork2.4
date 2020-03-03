@@ -7,6 +7,9 @@ using namespace std;
 struct Stack {
 	int arr[10] = {};
 	int top = -1;
+	void clean() {
+		top = -1;
+	}
 	int peek() {
 		return arr[top];
 	};
@@ -21,7 +24,7 @@ struct Stack {
 		cout << "[ ]-";
 		for(int i=0;i<=top;i++){
 			if (arr[i] == 0) { cout << "[груз]"; }
-			else(cout << "[псжр]");
+			else if (arr[i] == 1) { cout << "[псжр]"; };
 			if (i < top) { cout << "-"; }
 		}
 		int code=_getch();
@@ -87,6 +90,7 @@ int main(bool isRunning)
 		{
 		case 0:train.creat(); break;
 		case 1: {
+			p.clean(); c.clean();
 			for (int i = 0; i < 10; i++) 
 			{
 				if (train.peek() == 1)
@@ -94,7 +98,7 @@ int main(bool isRunning)
 					p.push(1);
 					train.pop();
 				}
-				else{
+				else if(train.peek() == 0){
 					c.push(0);
 					train.pop();
 				}
